@@ -19,6 +19,7 @@ namespace CalculatorApplication
         public Form1()
         {
             InitializeComponent();
+            comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
 
             cal = new CalculatorClass();
         }
@@ -31,7 +32,7 @@ namespace CalculatorApplication
                 num2 = Convert.ToDouble(textBox2.Text);
                 string op = comboBox1.SelectedItem?.ToString();
                 
-                cal.info = null;
+                //cal.info = null;
 
                 switch (op)
                 {
@@ -54,6 +55,8 @@ namespace CalculatorApplication
 
                 double total = cal.info?.Invoke(num1, num2) ?? 0.0;
                 label4.Text = total.ToString();
+
+                cal.CalculateEvent -= cal.GetSum;
             }
             catch (FormatException)
             {
